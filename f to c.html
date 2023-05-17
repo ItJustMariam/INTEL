@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Fahrenheit / Celsius converter</title>
+    <script type="text/javascript">
+      function convert() {
+        let deg = document.getElementById("degree").value;
+        let dest = document.getElementById("answer");
+        let elements = document.getElementsByName("temperature");
+        let a;
+        for (let i = 0; i < elements.length; i++) {
+          if (elements[i].checked) {
+            a = elements[i].value;
+            break;
+          }
+        }
+        if (a === "fahrenheit") {
+          dest.innerHTML = f2c(Number(deg));
+        } else {
+          dest.innerHTML = c2f(Number(deg));
+        }
+      }
+
+      function f2c(deg) {
+        return (deg - 32) * 5 / 9;
+      }
+
+      function c2f(deg) {
+        return deg * 9 / 5 + 32;
+      }
+
+      function clearVals() {
+        document.getElementById("degree").value = "";
+        document.getElementById("answer").innerHTML = "";
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("convertButton").addEventListener("click", convert, false);
+        document.getElementById("clearButton").addEventListener("click", clearVals, false);
+      }, false);
+    </script>
+  </head>
+  <body>
+    <h1>Fahrenheit / Celsius converter</h1>
+    <input type="radio" name="temperature" value="fahrenheit" checked />
+      Fahrenheit into Celsius<br />
+    <input type="radio" name="temperature" value="celsius" />
+      Celsius into Fahrenheit<br />
+    <input type="text" id="degree" />
+    <button type="button" id="convertButton">convert</button><br />
+    <output id="answer"></output><br />
+    <button type="button" id="clearButton">clear</button>
+  </body>
+</html>
